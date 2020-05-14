@@ -41,7 +41,9 @@ class Filter implements FilterInterface
             /**
              * Only keep alphanumeric, ',', '-', space.  '"' in names were replaced with non-space like the rest
              */
-            $this->_filteredData['account_name']  = preg_replace("/[^[:alnum:],\- ]+/", "", $this->_data['account_name']);
+            $temp_name = preg_replace("/\'{2}/", " ", $this->_data['account_name']);
+            $this->_filteredData['account_name']  = preg_replace("/[^[:alnum:],\- ]+/", "", $temp_name);
+            //$this->_filteredData['account_name']  = preg_replace("/[^[:alnum:],\- ]+/", "", $this->_data['account_name']);
 
             /**
              * Check if length of account number is less than 10, if less than 10, pad with 0s at the beginning of the number
@@ -66,7 +68,7 @@ class Filter implements FilterInterface
              * Format sanitized phone number as xxx-xxx-xxxx
              */
             $temp  = substr(preg_replace("/[^[[:digit:]]+/", "", $this->_data['phone_number']), -10);
-            $this->_filteredData['phone_number']  = substr($temp, 0, 3) . "-" . substr($temp, 3, 3) . "-" . substr($temp, 5);
+            $this->_filteredData['phone_number']  = substr($temp, 0, 3) . "-" . substr($temp, 3, 3) . "-" . substr($temp, 6);
         }
         return $this->_filteredData;
     }

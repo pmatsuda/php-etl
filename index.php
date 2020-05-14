@@ -22,28 +22,12 @@ while ($data = $parser->parse()) {
     foreach ($data as $key => $value) {
         $isValid = $validatedData[$key] ? 'TRUE' : 'FALSE';
 
-        // $cliMate->info()->inline('Filtered ');
-        // $cliMate->cyan()->inline($value);
-        // $cliMate->info()->inline(' to ');
-        // $cliMate->cyan()->inline($filteredData[$key]);
-        // $cliMate->info()->inline(' and it validates to ');
-        // $cliMate->cyan($isValid);
-        echo('Filtered ');
-        echo($data['account_number']);
-        echo(' to ');
-        echo($filteredData['account_number'] ."<br>");
-        echo('Filtered ');
-        echo($data['account_name']);
-        echo(' to ');
-        echo($filteredData['account_name'] ."<br>");
-        echo('Filtered ');
-        echo($data['transaction_fee']);
-        echo(' to ');
-        echo($filteredData['transaction_fee'] ."<br>");
-        echo('Filtered ');
-        echo($data['phone_number']);
-        echo(' to ');
-        echo($filteredData['phone_number'] ."<br><br>");
+        $cliMate->info()->inline('Filtered ');
+        $cliMate->cyan()->inline($value);
+        $cliMate->info()->inline(' to ');
+        $cliMate->cyan()->inline($filteredData[$key]);
+        $cliMate->info()->inline(' and it validates to ');
+        $cliMate->cyan($isValid);
     }
 }
 

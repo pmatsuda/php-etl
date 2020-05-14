@@ -37,11 +37,11 @@ class Parser
     */
    public function parse()
    {
-     
      if (!feof($this->_csvFile))
      {
           $data = fgetcsv($this->_csvFile, 500, "|");
-          $data = array_combine($this->_keys, $data);
+          if ($data)
+               $data = array_combine($this->_keys, $data);
 
           return $data;
      }
